@@ -36,6 +36,7 @@ public class DespawnManager implements Listener {
     private final JavaPlugin plugin;
     private final Map<UUID, Long> ages = new HashMap<UUID, Long>();
     private final Set<UUID> protectedAnimals = new HashSet<UUID>();
+    private final java.util.Random random = new java.util.Random();
 
     private long scanInterval;
     private int maximumRemovals;
@@ -133,7 +134,7 @@ public class DespawnManager implements Listener {
 
                 if (age > getMinimumAgeTicks() && Bukkit.getLogger() != null) {
                     int bound = getRandomCheckBound();
-                    if (bound <= 1 || plugin.getServer().getRandom().nextInt(bound) == 0) {
+                    if (bound <= 1 || random.nextInt(bound) == 0) {
                         entity.remove();
                         ages.remove(uuid);
                         removed++;
@@ -364,11 +365,18 @@ public class DespawnManager implements Listener {
                     || material == Material.PUMPKIN_SEEDS;
         }
         if (entity instanceof org.bukkit.entity.Rabbit) {
-            return material == Material.CARROT
+            return material == Material.CARROT_ITEM
                     || material == Material.GOLDEN_CARROT
-                    || material == Material.DANDELION;
+                    || material == Material.YELLOW_FLOWER;
         }
-        if (entity instanceof Wolf) return material == Material.ROTTEN_FLESH;
+        if (entity instanceof Wolf) {
+            return material == Material.RAW_BEEF || material == Material.COOKED_BEEF
+                    || material == Material.RAW_CHICKEN || material == Material.COOKED_CHICKEN
+                    || material == Material.PORK || material == Material.GRILLED_PORK
+                    || material == Material.MUTTON || material == Material.COOKED_MUTTON
+                    || material == Material.RABBIT || material == Material.COOKED_RABBIT
+                    || material == Material.ROTTEN_FLESH;
+        }
         if (entity instanceof org.bukkit.entity.Ocelot) return material == Material.RAW_FISH;
         return false;
     }
