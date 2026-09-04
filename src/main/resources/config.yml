@@ -1,0 +1,67 @@
+# AnimalDespawn 0.2.0
+#
+# Presets:
+#   BETA_1_7_3  - classic Beta passive-mob despawning:
+#                  >128 blocks = immediate removal
+#                  >32 blocks after 600 ticks = 1/800 per tick
+#   LEGACY_CONSOLE - legacy-style preset; currently follows the classic
+#                    32/128 block despawn model.
+#   BEDROCK      - Bedrock-style preset; currently follows the classic
+#                  32/128 block despawn model.
+#   CUSTOM       - use the despawn values below.
+#
+# These presets intentionally affect DESPAWNING only. Paper remains
+# responsible for natural spawning.
+
+preset: BETA_1_7_3
+
+enabled: true
+
+despawn:
+  maximum-distance: 128
+  minimum-distance: 32
+  minimum-age-ticks: 600
+  random-check-bound: 800
+
+  # How often this plugin examines loaded animals.
+  scan-interval-ticks: 20
+
+  # Safety valve: never remove more than this many animals in one scan.
+  maximum-removals-per-scan: 8
+
+protection:
+  # Player interaction / ownership protection.
+  tamed: true
+  leashed: true
+  named: true
+  fed: true
+  bred: true
+
+  # In normal 1.12.2 gameplay, ordinary animal babies are player-created
+  # (breeding); protect them rather than treating them as wild spawns.
+  babies: true
+
+  # A sheep that has been sheared or dyed is considered interacted with.
+  sheared: true
+  dyed: true
+
+  # Dyeing a tamed wolf's collar is explicitly recognised as interaction.
+  wolf-collar-dyed: true
+
+animals:
+  COW: true
+  PIG: true
+  SHEEP: true
+  CHICKEN: true
+  RABBIT: true
+  MUSHROOM_COW: true
+  WOLF: true
+  OCELOT: true
+
+worlds:
+  whitelist: []
+  blacklist: []
+
+debug:
+  enabled: false
+  spawning: false
