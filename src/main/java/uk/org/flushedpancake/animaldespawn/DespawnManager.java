@@ -369,7 +369,14 @@ public class DespawnManager implements Listener {
                     || material == Material.GOLDEN_CARROT
                     || material == Material.YELLOW_FLOWER;
         }
-        if (entity instanceof Wolf) return material == Material.ROTTEN_FLESH;
+        if (entity instanceof Wolf) {
+            return material == Material.RAW_BEEF || material == Material.COOKED_BEEF
+                    || material == Material.RAW_CHICKEN || material == Material.COOKED_CHICKEN
+                    || material == Material.PORK || material == Material.GRILLED_PORK
+                    || material == Material.MUTTON || material == Material.COOKED_MUTTON
+                    || material == Material.RABBIT || material == Material.COOKED_RABBIT
+                    || material == Material.ROTTEN_FLESH;
+        }
         if (entity instanceof org.bukkit.entity.Ocelot) return material == Material.RAW_FISH;
         return false;
     }
